@@ -1,0 +1,36 @@
+<div class="container">
+<br>
+
+    <button class="btn btn-primary mt-3" (click)="insertToDB()">Insert Exchange data</button> &nbsp;
+    <!-- <button class="btn btn-info mt-3" (click)="insertExchangeIcon()">Insert Exchange Icon</button> -->
+<br>
+    <hr>
+    <br>
+     <!-- icon-table.component.html -->
+  <div>
+    <input type="text" placeholder="Search by Exchanges" [(ngModel)]="searchTerm" /> 
+  </div>
+  <br>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">SNo.</th>
+        <th scope="col">Exchanges</th>
+        <th scope="col">24H TRADE VOLUME</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let items of combinedData | filterIcons: searchTerm; let i=index;">
+        <!-- <tr *ngFor="let items of combinedData"> -->
+            <td>{{i+1}}</td>
+            <td>
+                <img [src]="items.url" alt="{{ items.exchangeIcon }}" /> &nbsp; {{ items.exchange_id }}
+            </td>
+            <td>${{items.volume_1day_usd| number: '1.2-2' }}Billion
+
+            </td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
